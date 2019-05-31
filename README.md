@@ -1,5 +1,7 @@
 # PWSafe
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/lucasepe/pwsafe)](https://goreportcard.com/report/github.com/lucasepe/pwsafe) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/gojp/goreportcard/blob/master/LICENSE)
+
 Cross Platform simple and secure password management from commandline.
 
 - Free open source software
@@ -33,7 +35,7 @@ Secret phrase: *****
 | => pwsafe list -file test.dat
 Secret phrase: *****
 +-------------------------------------------------------------------------------+
-|                          /Users/sepelu/Temp/test.dat                          |
+|                         /Users/lucasepe/Temp/test.dat                         |
 +--------------+----------+-----------------------+-----------------------------+
 | TITLE        | CATEGORY | USERNAME              | URL                         |
 +--------------+----------+-----------------------+-----------------------------+
@@ -55,7 +57,7 @@ Secret phrase: *****
 | => pwsafe pull -file test.dat "my cool site"
 Secret phrase: *****
 +--------------------------------------------+
-|        /Users/sepelu/Temp/test.dat         |
+|       /Users/lucasepe/Temp/test.dat        |
 +--------------------------------------------+
 | TITLE        : My Cool Site                |
 | GROUP        : Bank                        |
@@ -69,3 +71,6 @@ Secret phrase: *****
 
 [![asciicast](https://asciinema.org/a/AFgCN5ooodf4l9kxl8O5LKEAd.svg)](https://asciinema.org/a/AFgCN5ooodf4l9kxl8O5LKEAd)
 
+### Credits ###
+
+PWSafe database file encryption/decryption derived from the original work of https://github.com/tkuhlman/gopwsafe 
