@@ -13,7 +13,7 @@ Since the Password Safe [file format](https://raw.githubusercontent.com/jpvasque
 
 You can choose to store all your passwords in a single encrypted master password database, or use multiple databases to further organize your passwords (work and home, for example).
 
-## Create a new password store (ìnit`)
+## Create a new password store (`init`)
 
 ```bash
 | => pwsafe init -file test.dat
