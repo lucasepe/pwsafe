@@ -70,6 +70,18 @@ Secret phrase: *****
 +--------------------------------------------+
 ```
 
+# Copy a specific record field value to clipboard
+
+> Usefull if you want to grab the password without showing the record content
+
+```bash
+| => pwsafe clip -file test.dat "my cool site"
+Secret phrase: *****
+👍 check your clipboard for the content of the field 'pass'
+````
+
+by default the password value is copied to clipboard but (`-pass`) but you can specify `-url` or `-user`.
+
 [![asciicast](https://asciinema.org/a/AFgCN5ooodf4l9kxl8O5LKEAd.svg)](https://asciinema.org/a/AFgCN5ooodf4l9kxl8O5LKEAd)
 
 ### Credits ###
