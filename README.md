@@ -52,7 +52,7 @@ Secret phrase: *****
 👍 record successfully pushed to store 'test.dat'
 ```
 
-# View a record by it's title (`pull`)
+## View a record by it's title (`pull`)
 
 ```bash
 | => pwsafe pull -file test.dat "my cool site"
@@ -70,9 +70,9 @@ Secret phrase: *****
 +--------------------------------------------+
 ```
 
-# Copy a specific field value to your clipboard (`clip`)
+## Copy a specific field value to your clipboard (`clip`)
 
-> Usefull if you want to grab the password without showing the record content
+Usefull if you want to grab the password without showing the record content.
 
 ```bash
 | => pwsafe clip -file test.dat "my cool site"
@@ -81,6 +81,8 @@ Secret phrase: *****
 ````
 
 by default the password value is copied to clipboard but (`-pass`) but you can specify `-url` or `-user`.
+
+---
 
 [![asciicast](https://asciinema.org/a/AFgCN5ooodf4l9kxl8O5LKEAd.svg)](https://asciinema.org/a/AFgCN5ooodf4l9kxl8O5LKEAd)
 
