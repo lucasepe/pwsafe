@@ -70,7 +70,7 @@ Secret phrase: *****
 +--------------------------------------------+
 ```
 
-# Copy a specific record field value to clipboard
+# Copy a specific field value to your clipboard (`clip`)
 
 > Usefull if you want to grab the password without showing the record content
 
