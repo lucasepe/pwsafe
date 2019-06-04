@@ -32,6 +32,7 @@ Usage: %s %s [pattern]
 `
 )
 
+// NewListCommand create a 'list' cli command
 func NewListCommand(filename string) *cli.Command {
 	action := listAction{}
 

@@ -25,12 +25,13 @@ const (
 	shortDesc = "copy the content of the specified field to the clipboard"
 	longDesc  = `Copy the content of the specified field to the clipboard.
 
-Usage: %s %s -field=user|pass|url
+Usage: %s %s -field=user|pass|url|notes <Record Title>
 
- * accepted values for 'field' are: user, pass, url
+ * accepted values for 'field' are: user, pass, url, notes
 `
 )
 
+// NewClipCommand create a 'clip' cli command
 func NewClipCommand(filename string) *cli.Command {
 	action := clipAction{}
 
@@ -112,6 +113,8 @@ func copyFieldContentToClipboard(field, name string, db pwsafe.DB) {
 		clipboard.WriteAll(rec.Password)
 	case "user":
 		clipboard.WriteAll(rec.Username)
+	case "notes":
+		clipboard.WriteAll(rec.Notes)
 	default:
 		clipboard.WriteAll(rec.URL)
 	}

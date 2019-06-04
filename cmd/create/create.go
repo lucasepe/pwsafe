@@ -26,6 +26,7 @@ Usage: %s %s [options]
 `
 )
 
+// NewCreateCommand create a 'init' cli command
 func NewCreateCommand(filename string) *cli.Command {
 	action := createAction{}
 

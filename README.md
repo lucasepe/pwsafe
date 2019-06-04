@@ -52,22 +52,22 @@ Secret phrase: *****
 👍 record successfully pushed to store 'test.dat'
 ```
 
-## View a record by it's title (`pull`)
+## Fetch a specific field content (`pull`)
 
 ```bash
 | => pwsafe pull -file test.dat "my cool site"
 Secret phrase: *****
-+--------------------------------------------+
-|       /Users/lucasepe/Temp/test.dat        |
-+--------------------------------------------+
-| TITLE        : My Cool Site                |
-| GROUP        : Bank                        |
-| URL          : http://www.mysecretsite.com |
-| USERNAME     : pinco.pallo@gmail.com       |
-| PASSWORD     : abbraadabbra                |
-| NOTES        :                             |
-| LAST UPDATED : 2019-29-05                  |
-+--------------------------------------------+
+a1E[!0aK9
+```
+
+- by default `field=pass``
+
+You can specify a field name
+
+```bash
+| => pwsafe pull -field url upwork
+Secret phrase: 
+https://www.upwork.com
 ```
 
 ## Copy a specific field value to clipboard (`clip`)

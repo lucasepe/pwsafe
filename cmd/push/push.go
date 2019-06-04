@@ -33,6 +33,7 @@ Usage: %s %s [options] "Title"
 `
 )
 
+// NewPushCommand create a 'push' cli command
 func NewPushCommand(filename string) *cli.Command {
 	action := pushAction{}
 
