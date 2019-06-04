@@ -57,7 +57,7 @@ Secret phrase: *****
 ```bash
 | => pwsafe pull -file test.dat "my cool site"
 Secret phrase: *****
-a1E[!0aK9
+abbraadabbra
 ```
 
 - by default `field=pass``
