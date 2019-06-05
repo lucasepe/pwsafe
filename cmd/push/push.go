@@ -10,6 +10,7 @@ import (
 	"github.com/lucasepe/cli"
 
 	"github.com/lucasepe/pwsafe"
+	"github.com/lucasepe/pwsafe/cmd/internal"
 	utils "github.com/lucasepe/pwsafe/cmd/internal"
 )
 
@@ -50,8 +51,9 @@ func NewPushCommand(filename string) *cli.Command {
 }
 
 func (r *pushAction) handler() error {
-	if strings.TrimSpace(r.title) == "" {
-		return fmt.Errorf("missed record title")
+	err := r.validateParams()
+	if err != nil {
+		return err
 	}
 
 	p, err := utils.GetAbsolutePath(r.filename)
@@ -85,23 +87,23 @@ func (r *pushAction) handler() error {
 	rec.Title = r.title
 
 	if r.username != "" {
-		rec.Username = r.username
+		rec.Username = strings.TrimSpace(r.username)
 	}
 
 	if r.url != "" {
-		rec.URL = r.url
+		rec.URL = strings.TrimSpace(r.url)
 	}
 
 	if r.category != "" {
-		rec.Group = r.category
+		rec.Group = strings.TrimSpace(r.category)
 	}
 
 	if r.password != "" {
-		rec.Password = r.password
+		rec.Password = strings.TrimSpace(r.password)
 	}
 
 	if notes != "" {
-		rec.Notes = notes
+		rec.Notes = strings.TrimSpace(notes)
 	}
 
 	db.SetRecord(rec)
@@ -112,6 +114,26 @@ func (r *pushAction) handler() error {
 	}
 
 	return err
+}
+
+func (r *pushAction) validateParams() error {
+	if strings.TrimSpace(r.title) == "" {
+		return internal.NewMissingParameterError("title", cmdName)
+	}
+
+	if strings.TrimSpace(r.url) == "" {
+		return internal.NewMissingParameterError("url", cmdName)
+	}
+
+	if strings.TrimSpace(r.username) == "" {
+		return internal.NewMissingParameterError("username", cmdName)
+	}
+
+	if strings.TrimSpace(r.password) == "" {
+		return internal.NewMissingParameterError("password", cmdName)
+	}
+
+	return nil
 }
 
 func (r *pushAction) flagHandler(fn string) func(fs *flag.FlagSet) {

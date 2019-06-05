@@ -1,6 +1,6 @@
 # PWSafe
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/lucasepe/pwsafe)](https://goreportcard.com/report/github.com/lucasepe/pwsafe) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/gojp/goreportcard/blob/master/LICENSE)
+[![Go Report Card](https://goreportcard.com/badge/github.com/lucasepe/pwsafe)](https://goreportcard.com/report/github.com/lucasepe/pwsafe) [![Github All Releases](https://img.shields.io/github/downloads/lucasepe/pwsafe/total.svg)](https://github.com/lucasepe/pwsafe/releases) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/gojp/goreportcard/blob/master/LICENSE)
 
 Cross Platform simple and secure password management from commandline.
 

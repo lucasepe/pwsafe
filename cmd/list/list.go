@@ -10,15 +10,16 @@ import (
 
 	"github.com/lucasepe/cli"
 
-	"github.com/xlab/tablewriter"
+	"github.com/lucasepe/tablewriter"
 
 	"github.com/lucasepe/pwsafe"
 	utils "github.com/lucasepe/pwsafe/cmd/internal"
 )
 
 type listAction struct {
-	query    string
-	filename string
+	query       string
+	filename    string
+	withHeaders bool
 }
 
 const (
@@ -70,7 +71,7 @@ func (r *listAction) handler() error {
 		return err
 	}
 
-	str := dump(r.filename, r.query, db)
+	str := dump(r.filename, r.query, r.withHeaders, db)
 	fmt.Println(str)
 
 	return nil
@@ -79,6 +80,7 @@ func (r *listAction) handler() error {
 func (r *listAction) flagHandler(fn string) func(fs *flag.FlagSet) {
 	return func(fs *flag.FlagSet) {
 		fs.StringVar(&(r.filename), "file", fn, "secure password store file")
+		fs.BoolVar(&(r.withHeaders), "headers", false, "print columns headers")
 	}
 }
 
@@ -88,11 +90,14 @@ func (r *listAction) flagPostParser(fs *flag.FlagSet) {
 	}
 }
 
-func dump(caption, query string, db pwsafe.DB) string {
+func dump(caption, query string, headers bool, db pwsafe.DB) string {
 	table := tablewriter.CreateTable()
+	table.Style = tablewriter.GhostStyle
 	table.AddTitle(caption)
 	//tablewriter.EnableUTF8()
-	table.AddHeaders("TITLE", "CATEGORY", "USERNAME", "URL")
+	if headers {
+		table.AddHeaders("TITLE", "CATEGORY", "USERNAME", "URL")
+	}
 
 	titles := db.List()
 	tot := len(titles)
