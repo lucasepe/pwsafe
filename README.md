@@ -5,7 +5,7 @@
 Cross Platform simple and secure password management from commandline.
 
 - Free open source software
-- Works on [Linux](https://github.com/lucasepe/pwsafe/releases/download/v1.0.0/pwsafe-linux-amd64), [Mac OSX](https://github.com/lucasepe/pwsafe/releases/download/v1.0.0/pwsafe-darwin-amd64), [Windows](https://github.com/lucasepe/pwsafe/releases/download/v1.0.0/pwsafe-windows-amd64)
+- Works on [Linux](https://github.com/lucasepe/pwsafe/releases/download/v1.0.2/pwsafe-linux-amd64), [Mac OSX](https://github.com/lucasepe/pwsafe/releases/download/v1.0.2/pwsafe-darwin-amd64), [Windows](https://github.com/lucasepe/pwsafe/releases/download/v1.0.2/pwsafe-windows-amd64)
 
 - Just a single portable binary file
 
@@ -35,13 +35,9 @@ Secret phrase: *****
 ```bash
 | => pwsafe list -file test.dat
 Secret phrase: *****
-+-------------------------------------------------------------------------------+
-|                         /Users/lucasepe/Temp/test.dat                         |
-+--------------+----------+-----------------------+-----------------------------+
-| TITLE        | CATEGORY | USERNAME              | URL                         |
-+--------------+----------+-----------------------+-----------------------------+
-| My Cool Site |          | pinco.pallo@gmail.com | http://www.mysecretsite.com |
-+--------------+----------+-----------------------+-----------------------------+
+                          /Users/lucasepe/Temp/test.dat 
+
+  My Cool Site            pinco.pallo@gmail.com   http://www.mysecretsite.com
 ```
 
 ## Edit / Update a record (`push`)
@@ -84,8 +80,6 @@ Secret phrase: *****
   - you can also specify `-url` or `-user`.
 
 ---
-
-[![asciicast](https://asciinema.org/a/AFgCN5ooodf4l9kxl8O5LKEAd.svg)](https://asciinema.org/a/AFgCN5ooodf4l9kxl8O5LKEAd)
 
 ### Credits ###
 
