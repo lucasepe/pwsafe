@@ -74,10 +74,18 @@ Useful if you want to grab the password without showing the record content.
 | => pwsafe clip -file test.dat "my cool site"
 Secret phrase: *****
 👍 check your clipboard for the content of the field 'pass'
-````
+```
 
 - by default the password value is copied to clipboard (`-pass`) 
   - you can also specify `-url` or `-user`.
+
+## Remove a record (`remove`)
+
+```bash
+| => pwsafe remove "my cool site"
+Secret phrase: *****
+👍 record successfully removed from store '/Users/lucasepe/Temp/test.dat'
+```
 
 ---
 
