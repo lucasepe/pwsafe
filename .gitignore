@@ -32,5 +32,6 @@ go.sum
 # Goreleaser config and folder
 dist/**
 .goreleaser.yml
+build.sh
 shrink.sh
 

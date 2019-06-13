@@ -13,6 +13,7 @@ import (
 	"github.com/lucasepe/pwsafe/cmd/list"
 	"github.com/lucasepe/pwsafe/cmd/pull"
 	"github.com/lucasepe/pwsafe/cmd/push"
+	"github.com/lucasepe/pwsafe/cmd/remove"
 )
 
 const (
@@ -63,6 +64,12 @@ func main() {
 	}
 
 	err = bin.RegisterCommand(clip.NewClipCommand(filename))
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
+
+	err = bin.RegisterCommand(remove.NewRemoveCommand(filename))
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
