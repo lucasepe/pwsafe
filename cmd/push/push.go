@@ -51,9 +51,13 @@ func NewPushCommand(filename string) *cli.Command {
 }
 
 func (r *pushAction) handler() error {
-	err := r.validateParams()
+	c, err := r.validateParams()
 	if err != nil {
 		return err
+	}
+
+	if c == 0 {
+		return nil
 	}
 
 	p, err := utils.GetAbsolutePath(r.filename)
@@ -116,24 +120,33 @@ func (r *pushAction) handler() error {
 	return err
 }
 
-func (r *pushAction) validateParams() error {
+func (r *pushAction) validateParams() (int, error) {
 	if strings.TrimSpace(r.title) == "" {
-		return internal.NewMissingParameterError("title", cmdName)
+		return 0, internal.NewMissingParameterError("title", cmdName)
 	}
 
-	if strings.TrimSpace(r.url) == "" {
-		return internal.NewMissingParameterError("url", cmdName)
+	ret := 0
+	if strings.TrimSpace(r.url) != "" {
+		ret = ret + 1
 	}
 
-	if strings.TrimSpace(r.username) == "" {
-		return internal.NewMissingParameterError("username", cmdName)
+	if strings.TrimSpace(r.username) != "" {
+		ret = ret + 1
 	}
 
-	if strings.TrimSpace(r.password) == "" {
-		return internal.NewMissingParameterError("password", cmdName)
+	if strings.TrimSpace(r.password) != "" {
+		ret = ret + 1
 	}
 
-	return nil
+	if strings.TrimSpace(r.category) != "" {
+		ret = ret + 1
+	}
+
+	if r.withNotes {
+		ret = ret + 1
+	}
+
+	return ret, nil
 }
 
 func (r *pushAction) flagHandler(fn string) func(fs *flag.FlagSet) {
