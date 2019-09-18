@@ -3,7 +3,14 @@ package internal
 import (
 	"bufio"
 	"bytes"
+	"crypto/rand"
+	"crypto/rsa"
+	"crypto/x509"
+	"encoding/base64"
+	"encoding/pem"
+	"errors"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -28,6 +35,54 @@ func FileExist(fn string) (bool, error) {
 	}
 
 	return true, nil
+}
+
+// GetEncryptedSecretPhrase get secret phrase from an RSA (base64)encrypted string
+func GetEncryptedSecretPhrase(fn string) (string, error) {
+	base := filepath.Base(fn)
+	ext := filepath.Ext(base)
+	name := base[0 : len(base)-len(ext)]
+	full := fn[0 : len(fn)-len(base)]
+
+	// Load the Base64 encrypted secret
+	keyf := filepath.Join(full, name+".key")
+	keyBytes, err := ioutil.ReadFile(keyf)
+	if err != nil {
+		return "", err
+	}
+
+	keyEnc, err := base64.StdEncoding.DecodeString(string(keyBytes))
+	if err != nil {
+		return "", err
+	}
+
+	// Load the Private Key from PEM file
+	pemf := filepath.Join(full, name+"-pri.pem")
+	if ok, _ := FileExist(pemf); !ok {
+		return "", NewFileNotFoundError(pemf)
+	}
+
+	pemBytes, err := ioutil.ReadFile(pemf)
+	if err != nil {
+		return "", err
+	}
+
+	block, _ := pem.Decode(pemBytes)
+	if block == nil {
+		return "", errors.New("failed to parse PEM block containing the key")
+	}
+
+	pri, err := x509.ParsePKCS1PrivateKey(block.Bytes)
+	if err != nil {
+		return "", err
+	}
+
+	keyDec, err := rsa.DecryptPKCS1v15(rand.Reader, pri, keyEnc)
+	if err != nil {
+		return "", err
+	}
+
+	return strings.TrimSpace(string(keyDec)), nil
 }
 
 // GetSecretPhrase read a password entry from terminal.
