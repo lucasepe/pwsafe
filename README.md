@@ -89,6 +89,56 @@ Secret phrase: *****
 
 ---
 
+# How to avoid typing the secret phrase each time
+
+**Caution**: use this method only if you are sure the <u>you are the only one accessing to your computer</u>!
+
+Given `PWSAFE_HOME=$HOME/.pwsafe` as the `pwsafe` home folder.
+
+The default database will reside in this folder named as `vault.dat`.
+
+If you are tired to type each time the secret phrase, follow those steps:
+
+## Goto the `$PWSAFE_HOME` folder
+
+```bash
+cd $PWSAFE_HOME
+```
+
+## Generate a private RSA key
+
+Save it in a file called `vault-pri.pem`:
+
+```bash
+$ openssl genrsa -out vault-pri.pem 1024 
+```
+
+## Export the public key
+
+Save it in a file called `vault-pub.pem`:
+
+```bash
+$ openssl rsa -in vault-pri.pem -pubout -out vault-pub.pem 
+```
+
+## Encrypt your secret phrase (base64 encode it)
+
+Save it in a file called `vault.key`:
+
+```bash
+$ echo 'abbracadabbra!' | openssl rsautl -encrypt -inkey vault-pub.pem -pubin | base64 > vault.key
+```
+
+That's all! 
+
+Now you can access to data in your default database (`vault.dat`) without typing the secret phrase.
+
+If you wants to enable the secret phrase typing again, simply remove the following files:
+
+- `vault.key`, `vault-pri.key`, `vault-pub.key`
+
+---
+
 ### Credits ###
 
 PWSafe database file encryption/decryption derived from the original work of https://github.com/tkuhlman/gopwsafe 
