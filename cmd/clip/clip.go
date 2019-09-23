@@ -63,9 +63,12 @@ func (r *clipAction) handler() error {
 		return err
 	}
 
-	secret, err := utils.GetSecretPhrase()
+	secret, err := utils.GetEncryptedSecretPhrase(r.filename)
 	if err != nil {
-		return err
+		secret, err = utils.GetSecretPhrase()
+		if err != nil {
+			return err
+		}
 	}
 
 	db, err := pwsafe.OpenPWSafeFile(r.filename, secret)
